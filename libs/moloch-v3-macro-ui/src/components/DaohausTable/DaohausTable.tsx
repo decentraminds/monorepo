@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, ReactNode } from 'react';
 import { useTable, Column } from 'react-table';
 
 import { Button } from '@daohaus/ui';
@@ -48,7 +48,7 @@ export function DaoTable<T extends object>({
                 return (
                   <Th {...column.getHeaderProps()}>
                     <HeaderCellContainer>
-                      {column.render('Header')}
+                      {column.render('Header') as ReactNode}
                       {sortableColumns.includes(column.id) &&
                         handleColumnSort && (
                           <ColumnSortIcons
@@ -70,7 +70,7 @@ export function DaoTable<T extends object>({
               <Tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <Td {...cell.getCellProps()}>{cell.render('Cell')}</Td>
+                    <Td {...cell.getCellProps()}>{cell.render('Cell') as ReactNode}</Td>
                   );
                 })}
               </Tr>

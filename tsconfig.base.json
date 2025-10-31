@@ -17,6 +17,7 @@
     "noImplicitReturns": false,
     "resolveJsonModule": true,
     "baseUrl": ".",
+    "typeRoots": ["node_modules/@types", "types"],
     "paths": {
       "@daohaus/abis": ["libs/abis/src/index.ts"],
       "@daohaus/connect": ["libs/connect/src/index.ts"],
@@ -38,5 +39,6 @@
       "@daohaus/wizard-form-builder": ["libs/wizard-form-builder/src/index.ts"]
     }
   },
+  "files": ["types/styled.d.ts"],
   "exclude": ["node_modules", "tmp"]
 }

@@ -566,9 +566,6 @@ export const defaultDarkTheme: DefaultTheme = {
 export const defaultLightTheme: DefaultTheme = {
   themeName: 'light',
   font,
-  border: {
-    radius: border.radius,
-  },
   transparent: 'transparent',
   rootBgColor: secondary.step1,
   rootFontColor: secondary.step12,
