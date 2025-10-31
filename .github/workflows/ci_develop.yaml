@@ -25,7 +25,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - name: Create env file
         run: |
@@ -39,6 +39,7 @@ jobs:
           echo NX_GRAPH_API_KEY_MAINNET=${{ secrets.NX_GRAPH_API_KEY_MAINNET }}  >> .env
           echo NX_WALLET_CONNECT_ID=${{ secrets.NX_WALLET_CONNECT_ID }}  >> .env
           echo NX_BASESCAN_KEY=${{ secrets.NX_BASESCAN_KEY }}  >> .env
+          echo NX_SEQUENCE_KEY=${{ secrets.NX_SEQUENCE_KEY }}  >> .env
 
       - name: Install dependencies
         run: yarn install
