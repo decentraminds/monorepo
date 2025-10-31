@@ -1,4 +1,4 @@
-import { StrictMode } from 'react';
+import { StrictMode, ReactNode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -22,7 +22,7 @@ const queryClient = new QueryClient({
 });
 
 root.render(
-  <StrictMode>
+  (<StrictMode>
     <HashRouter>
       <HausThemeProvider>
         <QueryClientProvider client={queryClient}>
@@ -30,5 +30,5 @@ root.render(
         </QueryClientProvider>
       </HausThemeProvider>
     </HashRouter>
-  </StrictMode>
+  </StrictMode>) as ReactNode
 );

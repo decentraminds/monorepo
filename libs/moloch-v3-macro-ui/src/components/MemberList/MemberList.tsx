@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, ReactElement } from 'react';
 import { Column, Row } from 'react-table';
 
 import { ValidNetwork } from '@daohaus/keychain-utils';
@@ -72,7 +72,7 @@ export const MemberList = ({
       {
         Header: 'Member',
         accessor: 'memberAddress',
-        Cell: ({ value }: { value: string }) => {
+        Cell: ({ value }: { value: string }): ReactElement => {
           return (
             <MemberProfileAvatar
               daoChain={daoChain}
@@ -80,21 +80,21 @@ export const MemberList = ({
               memberAddress={value}
               allowLinks={allowLinks}
             />
-          );
+          ) as ReactElement;
         },
       },
       {
-        Header: () => {
-          return <div className="hide-sm">Join Date</div>;
+        Header: (): ReactElement => {
+          return <div className="hide-sm">Join Date</div> as ReactElement;
         },
         accessor: 'createdAt',
-        Cell: ({ value }: { value: string }) => {
-          return <div className="hide-sm">{formatDateFromSeconds(value)}</div>;
+        Cell: ({ value }: { value: string }): ReactElement => {
+          return <div className="hide-sm">{formatDateFromSeconds(value)}</div> as ReactElement;
         },
       },
       {
-        Header: () => {
-          return <div className="hide-sm">Power</div>;
+        Header: (): ReactElement => {
+          return <div className="hide-sm">Power</div> as ReactElement;
         },
         accessor: 'delegateShares',
         Cell: ({
@@ -103,7 +103,7 @@ export const MemberList = ({
         }: {
           value: string;
           row: Row<MembersTableType>;
-        }) => {
+        }): ReactElement => {
           const delegatedShares = sharesDelegatedToMember(
             row.original.delegateShares,
             row.original.shares
@@ -123,12 +123,12 @@ export const MemberList = ({
                 />
               )}
             </div>
-          );
+          ) as ReactElement;
         },
       },
       {
-        Header: () => {
-          return <div className="hide-sm">Delegating To</div>;
+        Header: (): ReactElement => {
+          return <div className="hide-sm">Delegating To</div> as ReactElement;
         },
         accessor: 'delegatingTo',
         Cell: ({
@@ -137,7 +137,7 @@ export const MemberList = ({
         }: {
           value: string;
           row: Row<MembersTableType>;
-        }) => {
+        }): ReactElement => {
           return (
             <div className="hide-sm">
               {value === row.original.memberAddress ? (
@@ -146,15 +146,15 @@ export const MemberList = ({
                 <AddressDisplay address={value} truncate />
               )}
             </div>
-          );
+          ) as ReactElement;
         },
       },
       {
-        Header: () => {
-          return <>Voting</>;
+        Header: (): ReactElement => {
+          return <>Voting</> as ReactElement;
         },
         accessor: 'shares',
-        Cell: ({ value }: { value: string }) => {
+        Cell: ({ value }: { value: string }): ReactElement => {
           return (
             <div>
               {formatValueTo({
@@ -163,15 +163,15 @@ export const MemberList = ({
                 format: 'number',
               })}
             </div>
-          );
+          ) as ReactElement;
         },
       },
       {
-        Header: () => {
-          return <div>Non-Voting</div>;
+        Header: (): ReactElement => {
+          return <div>Non-Voting</div> as ReactElement;
         },
         accessor: 'loot',
-        Cell: ({ value }: { value: string }) => {
+        Cell: ({ value }: { value: string }): ReactElement => {
           return (
             <div>
               {formatValueTo({
@@ -180,13 +180,13 @@ export const MemberList = ({
                 format: 'number',
               })}
             </div>
-          );
+          ) as ReactElement;
         },
       },
 
       {
         accessor: 'id',
-        Cell: ({ row }: { row: Row<MembersTableType> }) => {
+        Cell: ({ row }: { row: Row<MembersTableType> }): ReactElement => {
           return (
             <ActionContainer>
               <MemberProfileMenu
@@ -197,7 +197,7 @@ export const MemberList = ({
                 allowMemberMenu={allowMemberMenu}
               />
             </ActionContainer>
-          );
+          ) as ReactElement;
         },
       },
     ],

@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useState, ReactElement } from 'react';
 
 import { Buildable, Button, Field, FieldWrapper } from '@daohaus/ui';
 import { useFormContext } from 'react-hook-form';
@@ -83,7 +83,7 @@ export const EpochDatePicker = (props: Buildable<Field>) => {
         selected={startDate}
         onChange={(date: Date) => handleChange(date)}
         showTimeSelect
-        customInput={<CustomInput />}
+        customInput={<CustomInput /> as ReactElement}
         wrapperClassName={props?.className}
         dateFormat="Pp"
       />

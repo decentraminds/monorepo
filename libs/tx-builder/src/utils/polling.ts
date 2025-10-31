@@ -4,7 +4,7 @@ import { Keychain, ValidNetwork } from '@daohaus/keychain-utils';
 import { IFindQueryResult } from '@daohaus/data-fetch-utils';
 
 // eslint-disable-next-line
-type PollFetch = (...args: any) => Promise<any>;
+type PollFetch = (args: any) => Promise<any>;
 type PollTest = (result?: any) => boolean;
 
 type Poll = ({
@@ -17,7 +17,7 @@ type Poll = ({
   poll: PollFetch;
   test: PollTest;
   interval?: number;
-  variables: Parameters<typeof poll>;
+  variables: Parameters<typeof poll>[0];
   onPollStart?: () => void;
   onPollSuccess?: (result: any) => void;
   onPollError?: (error: unknown) => void;

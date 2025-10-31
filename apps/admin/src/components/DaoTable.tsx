@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { useTable, Column, UseTableRowProps } from 'react-table';
 import styled from 'styled-components';
 import { indigoDark } from '@radix-ui/colors';
@@ -100,7 +100,7 @@ export const DaoTable = ({ daoData }: IDaoTableData) => {
         }: {
           value: { name?: string; address: string; networkId?: string };
           row: UseTableRowProps<HubTableType>;
-        }) => {
+        }): ReactElement => {
           return (
             <FirstCell>
               <ProfileAvatar size="sm" address={value.address} />
@@ -117,36 +117,36 @@ export const DaoTable = ({ daoData }: IDaoTableData) => {
                 </Tag>
               )}
             </FirstCell>
-          );
+          ) as ReactElement;
         },
-        Header: () => {
+        Header: (): ReactElement => {
           return (
             <FirstHeader>
               {daoData?.length} {daoData?.length === 1 ? 'DAO' : 'DAOs'}
             </FirstHeader>
-          );
+          ) as ReactElement;
         },
       },
       {
         Header: 'Active Proposals',
         accessor: 'activeProposalCount',
-        Cell: ({ value }: { value: string | number }) => {
+        Cell: ({ value }: { value: string | number }): ReactElement => {
           return (
             <Highlight>
               {readableNumbers.toNumberShort({ value, decimals: 1 })}
             </Highlight>
-          );
+          ) as ReactElement;
         },
       },
       {
         Header: 'Members',
         accessor: 'activeMemberCount',
-        Cell: ({ value }: { value: string | number }) => {
+        Cell: ({ value }: { value: string | number }): ReactElement => {
           return (
             <Highlight>
               {readableNumbers.toNumberShort({ value, decimals: 1 })}
             </Highlight>
-          );
+          ) as ReactElement;
         },
       },
       {
@@ -166,19 +166,19 @@ export const DaoTable = ({ daoData }: IDaoTableData) => {
       {
         Header: 'Network',
         accessor: 'networkId',
-        Cell: ({ value }: { value: string | undefined }) => {
-          return <Highlight>{getNetworkName(value)}</Highlight>;
+        Cell: ({ value }: { value: string | undefined }): ReactElement => {
+          return <Highlight>{getNetworkName(value)}</Highlight> as ReactElement;
         },
       },
       {
         Header: 'Delegate',
         accessor: 'delegatingTo',
-        Cell: ({ value }: { value: string | undefined }) => {
+        Cell: ({ value }: { value: string | undefined }): ReactElement => {
           return (
             <Highlight>
               {value === undefined ? '--' : truncateAddress(value)}
             </Highlight>
-          );
+          ) as ReactElement;
         },
       },
     ],
@@ -197,7 +197,7 @@ export const DaoTable = ({ daoData }: IDaoTableData) => {
         {headerGroups.map((headerGroup) => (
           <Tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-              <Th {...column.getHeaderProps()}>{column.render('Header')}</Th>
+              <Th {...column.getHeaderProps()}>{column.render('Header') as ReactNode}</Th>
             ))}
           </Tr>
         ))}
@@ -208,7 +208,7 @@ export const DaoTable = ({ daoData }: IDaoTableData) => {
           return (
             <Tr {...row.getRowProps()}>
               {row.cells.map((cell) => {
-                return <Td {...cell.getCellProps()}>{cell.render('Cell')}</Td>;
+                return <Td {...cell.getCellProps()}>{cell.render('Cell') as ReactNode}</Td>;
               })}
             </Tr>
           );
